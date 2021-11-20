@@ -3,8 +3,8 @@
   {% block content %}
 <div class="">
   <!-- Update Info by user -->
- <div class="bg-green-500 h-1/5 w-6/12">
-    <p>Update Info of this house using this form</p>
+ <div class="h-1/5 w-4/12 min-w-max">
+    <p class="mx-auto flex justify-center font-extralight mt-1">Update Info of this house using this form</p>
     <form action="" method="post">
         {% csrf_token %}
         <section class="">
@@ -16,13 +16,13 @@
                 <input type="text" name="baths_fhtml" placeholder="No of Bath rooms" value="{{house.baths}}">
                 <!-- <input type="file" name="image_fhtml" placeholder="Select Image" value="{{house.image.path.url}}"> -->
             </div>
-            <div class="">
+            <div class="p-1 rounded-md flex justify-center">
                 <button type="submit">Update House</button>
             </div>
         </section>
     </form>
     <a href="{% url 'delete' house.id %}">
-    <div class="">
+    <div class="p-1 rounded-md flex justify-center shadow-md text-red-500">
         <i></i>
         <button>Delete House</button>
     </div>
