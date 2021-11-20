@@ -1,0 +1,244 @@
+{% extends '../base.html' %} {% block title %} examples person {% endblock title %} {% block content %}
+<div class="px-2">
+  <div class="flex -mx-2 h-screen">
+    <!-- row 1 -->
+
+    <div class="flex flex-col overflow-hidden">
+      <p class="font-light">User Directory Contatins {{people.count}} {{people.count | pluralize:"Person,People"}}</p>
+      <div class="overflow-y-scroll">
+        {% for person in people %}
+        <div class="max-w-sm w-full lg:max-w-full lg:flex">
+          <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{person.afile.url}}')" title=""></div>
+          <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+            <div class="mb-8">
+              <p class="text-sm text-gray-600 flex items-center">
+                <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+                </svg>
+
+                {% if person.fullname == membership.person %}{{membership.group}} {% endif %}
+              </p>
+              <div class="text-gray-900 font-bold text-xl mb-2">{{person.fullname | title}}</div>
+              <p class="text-gray-700 text-base flex flex-wrap">
+                <span class="text-pink-800">National Identification Number: {{person.nin}}</span><span class="text-purple-800"> Age: {{person.age}}</span> <span class="text-yellow-900">Email: {{person.email}}</span> <span class="text-pink-500">Boby Size: {{person.size}}</span>
+                <span class="text-purple-500">Height: {{person.height}}</span> <span class="text-red-500">Salary: {{person.salary}}</span> <span class="text-blue-500">Tax: ---</span> <span class="text-green-600">IpAddress: {{person.ipadd}}</span>
+              </p>
+            </div>
+            <div class="flex items-center">
+              <img class="w-10 h-10 rounded-full mr-4" src="{{person.profile.url}}" alt="Avatar of {{person.fullname}}" style="object-fit: cover;" />
+              <div class="text-sm">
+                <p class="text-gray-900 leading-none">{{person.fullname}}</p>
+                <p class="text-gray-600">{{person.etzone}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+
+        <div class="animate-pulse max-w-sm w-full lg:max-w-full lg:flex">
+          <div class="px-6 py-4 h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+            <div class="font-bold text-xl mb-2">None Found</div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div class="flex flex-col overflow-hidden">
+      <!-- GET -->
+      <form action="" method="get" class="">
+          {% csrf_token %}
+        <label for="search_fhtml">Search User:</label>
+        <input type="search" name="search_fhtml" id="" placeholder="By First Name Only" value="{{search_input}}" />
+      </form>
+      <!-- POST -->
+      <form action="" method="post" class="overflow-y-scroll">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label for="nin_fhtml" class="">nin</label>
+          <input type="text" name="nin_fhtml" placeholder="3456453242523454" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="fname_fhtml">first name</label>
+          <input type="text" name="fname_fhtml" placeholder="First Name" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="lname_fhtml">last name</label>
+          <input type="text" name="lname_fhtml" placeholder="Last Name" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="age_fhtml">age</label>
+          <input type="number" name="age_fhtml" placeholder="38" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="email_fhtml">email</label>
+          <input type="email" name="email_fhtml" placeholder="@example.com" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="afile_fhtml">select file</label>
+          <input type="file" name="afile_fhtml" placeholder="" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="profile_fhtml">profile picture</label>
+          <input type="file" name="profile_fhtml" placeholder="" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="size_fhtml">body size</label>
+          <input type="text" name="size_fhtml" placeholder="Small Medium Large" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="height_fhtml">height</label>
+          <input type="number" name="height_fhtml" placeholder="In Feet" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="salary_fhtml">salary</label>
+          <input type="number" name="salary_fhtml" placeholder="In Dollars ($)" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="etime_fhtml">date</label>
+          <input type="date" name="etime_fhtml" placeholder="" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="etzone_fhtml">timeZone</label>
+          <input type="datetime-local" name="etzone_fhtml" placeholder="" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="fazno_fhtml">decimals</label>
+          <input type="number" name="fazno_fhtml" placeholder="5 max 0.xx" class="" />
+        </div>
+
+        <div class="mb-4">
+          <label for="ipadd_fhtml">IPAddress</label>
+          <input type="text" name="ipadd_fhtml" placeholder="::ffff:10.10.10.10" class="" />
+        </div>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="hover:bg-blue-500 hover:text-white hover:border-transparent">Save Info</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <style>
+  input {
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+    border-style: solid;
+    --tw-border-opacity: 1;
+    border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    display: block;
+    width: 100%;
+    appearance: none;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    line-height: 1.25;
+    --tw-text-opacity: 1;
+    color: rgba(55, 65, 81, var(--tw-text-opacity));
+    --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  label {
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    font-family: inherit;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    --tw-border-opacity: 1;
+    border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+    --tw-shadow: 0 0 #0000;
+    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    --tw-text-opacity: 1;
+    color: rgba(55, 65, 81, var(--tw-text-opacity));
+  }
+  form {
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    font-family: inherit;
+    line-height: inherit;
+    font-weight: 600;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    --tw-border-opacity: 1;
+    border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  span {
+    padding: 0.2rem;
+  }
+  /* width */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #f0a652;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 100vh;
+  border: 3px solid #09529b;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7ca1d1;
+  width: 5px;
+}
+
+</style> -->
+{% endblock content %}

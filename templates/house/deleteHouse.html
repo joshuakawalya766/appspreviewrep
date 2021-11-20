@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+ {% block title %} house Delete {% endblock title %}
+  {% block content %}
+<div class="">
+  <!-- Delete Info by user -->
+ <img src="{{house.image.url}}" alt="" srcset="" />
+  <h1>{{house.title | title}}</h1>
+  <h2>{{house.location | title}}</h2>
+  <p>Are you sure you want to delete this House</p>
+  <form action="" method="post">
+      {% csrf_token %}
+      <div class="">
+          <i></i>
+          <input type="submit" value="Delete">
+      </div>
+  </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends '../base.html' %}
+ {% block title %} house profile {% endblock title %}
+  {% block content %}
+<div class="mb-2">
+  <!-- <img src="{{house.image.url}}" alt="" srcset="" />
+  <h1>{{house.title | title}}</h1>
+  <h2>{{house.location | title}}</h2>
+  <div class="flex">
+    <h4>{{house.rooms}} roo{{house.rooms | pluralize:"m,ms"}}</h4>
+    <h4>{{house.baths}} bathroo{{house.baths | pluralize:"m,ms"}}</h4>
+  </div> -->
+  <div class="max-w-sm w-full lg:max-w-full lg:flex">
+        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{house.image.url}}')" title=""></div>
+        <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+          <div class="mb-8">
+            <p class="text-sm text-gray-600 flex items-center">
+              <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+              </svg>
+
+              <!-- {% if person.fullname == membership.person %}{{membership.group}} {% endif %} -->
+            </p>
+            <div class="text-gray-900 font-bold text-xl mb-2">{{house.title | title}}</div>
+            <p class="text-gray-700 text-base flex flex-wrap">
+              <span class="text-pink-800">{{house.rooms}} roo{{house.rooms | pluralize:"m,ms"}}</span>
+              <span class="text-purple-800">{{house.baths}} bathroo{{house.baths | pluralize:"m,ms"}}</span>
+              <!-- <span class="text-yellow-900">Email: {{person.email}}</span> <span class="text-pink-500">Boby Size: {{person.size}}</span>
+              <span class="text-purple-500">Height: {{person.height}}</span> <span class="text-red-500">Salary: {{person.salary}}</span>
+              <span class="text-blue-500">Tax: ---</span> <span class="text-green-600">IpAddress: {{person.ipadd}}</span> -->
+            </p>
+            
+          </div>
+          <div class="flex items-center">
+            <!-- <img class="w-10 h-10 rounded-full mr-4" src="{{person.profile.url}}" alt="Avatar of {{person.fullname}}" style="object-fit: cover" /> -->
+            <div class="text-sm">
+              <p class="text-gray-900 leading-none">{{house.location | title}}</p>
+              <!-- <p class="text-gray-600">{{person.etzone}}</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<a href="{% url 'edit' house.id %}" id="navitem" class="">Edit House Info</a>
+{% endblock content %}
+
