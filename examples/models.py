@@ -44,7 +44,8 @@ class Person(models.Model):
     email=models.EmailField()
     afile = models.FileField(upload_to='Files/%Y/%m/%d/', max_length=100)
     # afilepath=models.FilePathField(match='*.txt' ,path=os.path.join(settings.BASE_DIR,'media'))
-    profile = models.ImageField(upload_to='ProfilePics', default='default.jpg') #height_field=500, width_field=500, ?????????
+    # height_field=500, width_field=500, ?????????
+    profile = models.ImageField(upload_to='ProfilePics/', default='default.jpg')
     ShirtSize = models.TextChoices('ShirtSize', 'SMALL MEDIUM LARGE')  # Choises declarration
     size = models.CharField(verbose_name="body size", choices=ShirtSize.choices, max_length=10, blank=True)  # choices usage
     height=models.IntegerField()
@@ -61,6 +62,15 @@ class Person(models.Model):
     
     def __str__(self):
         return self.fullname
+
+# Getting IP address
+    def get_client_ip(request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
     
     
     class Meta:
@@ -69,6 +79,7 @@ class Person(models.Model):
         verbose_name = 'Person'
         verbose_name_plural = 'People'
         ordering=['?','height']#- or ? for randomly on just blank ??????????
+        # ordering=['?','nin']
         # ordering = ['-pub_date', 'author']
         # from django.db.models import F
         # ordering = [F('author').asc(nulls_last=True)]

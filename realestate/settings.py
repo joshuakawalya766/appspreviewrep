@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'housing_app.apps.HousingAppConfig',
     'examples',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

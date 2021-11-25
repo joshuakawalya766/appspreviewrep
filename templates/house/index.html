@@ -3,10 +3,11 @@
   <form action="/" method="get">
     {% csrf_token %}
     <label for="search_fhtml">Search house:</label>
-    <input type="search" name="search_fhtml" id="" placeholder="Search" value="{{search_input}}" />
+    <input type="search" name="search_fhtml" id="" placeholder="Search House" value="{{search_input}}" />
     <i></i>
   </form>
 </div>
+{{67 | time:"H:i"}}
 <div class="h-auto w-4/5 overflow-x-hidden">
   <section class="flex overflow-x-scroll">
     {% for object in houses reversed %}
@@ -54,7 +55,7 @@
 <!-- Get Info from user -->
 <div class=" h-1/5 w-4/12 min-w-max">
   <p class="mx-auto flex justify-center font-extralight mt-1">Add a house using this form</p>
-  <form action="" method="post" class="">
+  <form action="" method="post" enctype="multipart/form-data" class="">
     {% csrf_token %}
     <section class="">
       <div class="">
@@ -63,7 +64,7 @@
         <input type="text" name="location_fhtml" placeholder="Enter Location" />
         <input type="text" name="rooms_fhtml" placeholder="No of Rooms" />
         <input type="text" name="baths_fhtml" placeholder="No of Bath rooms" />
-        <!-- <input type="file" name="image_fhtml" placeholder="Select Image"> -->
+        <input type="file" name="image_fhtml" placeholder="Select Image">
       </div>
       <div class="p-1 rounded-md flex justify-center">
         <button type="submit">Save House</button>

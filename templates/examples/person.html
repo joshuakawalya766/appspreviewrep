@@ -20,7 +20,7 @@
               </p>
               <div class="text-gray-900 font-bold text-xl mb-2">{{person.fullname | title}}</div>
               <p class="text-gray-700 text-base flex flex-wrap">
-                <span class="text-pink-800">National Identification Number: {{person.nin}}</span><span class="text-purple-800"> Age: {{person.age}}</span> <span class="text-yellow-900">Email: {{person.email}}</span> <span class="text-pink-500">Boby Size: {{person.size}}</span>
+                <span class="text-pink-800">National Identification Number: {{person.nin}}</span><span class="text-purple-800"> Age: {{person.age}}</span> <span class="text-yellow-900">Email: {{person.email}}</span> <span class="text-pink-500">Boby Size: {{person.size| title}}</span>
                 <span class="text-purple-500">Height: {{person.height}}</span> <span class="text-red-500">Salary: {{person.salary}}</span> <span class="text-blue-500">Tax: ---</span> <span class="text-green-600">IpAddress: {{person.ipadd}}</span>
               </p>
             </div>
@@ -53,76 +53,81 @@
         <input type="search" name="search_fhtml" id="" placeholder="By First Name Only" value="{{search_input}}" />
       </form>
       <!-- POST -->
-      <form action="" method="post" class="overflow-y-scroll">
+      <form action="" method="post" enctype="multipart/form-data" class="overflow-y-scroll">
         {% csrf_token %}
         <div class="mb-4">
           <label for="nin_fhtml" class="">nin</label>
-          <input type="text" name="nin_fhtml" placeholder="3456453242523454" class="" />
+          <input type="text" name="nin_fhtml" placeholder="3456453242523454" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="fname_fhtml">first name</label>
-          <input type="text" name="fname_fhtml" placeholder="First Name" class="" />
+          <input type="text" name="fname_fhtml" placeholder="First Name" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="lname_fhtml">last name</label>
-          <input type="text" name="lname_fhtml" placeholder="Last Name" class="" />
+          <input type="text" name="lname_fhtml" placeholder="Last Name" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="age_fhtml">age</label>
-          <input type="number" name="age_fhtml" placeholder="38" class="" />
+          <input type="number" name="age_fhtml" placeholder="Above 18" min="18" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="email_fhtml">email</label>
-          <input type="email" name="email_fhtml" placeholder="@example.com" class="" />
+          <input type="email" name="email_fhtml" placeholder="@example.com" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="afile_fhtml">select file</label>
-          <input type="file" name="afile_fhtml" placeholder="" class="" />
+          <input type="file" name="afile_fhtml" placeholder="" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="profile_fhtml">profile picture</label>
-          <input type="file" name="profile_fhtml" placeholder="" class="" />
+          <input type="file" name="profile_fhtml" placeholder="" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="size_fhtml">body size</label>
-          <input type="text" name="size_fhtml" placeholder="Small Medium Large" class="" />
+          <!-- <input type="text" name="size_fhtml" placeholder="Small Medium Large" required class="" /> -->
+          <select name="size_fhtml" id="">
+            {% for choice in size_choices %}
+              <option value="{{choice | title}}">{{choice | title}}</option>
+            {% endfor %}
+          </select>
         </div>
 
         <div class="mb-4">
           <label for="height_fhtml">height</label>
-          <input type="number" name="height_fhtml" placeholder="In Feet" class="" />
+          <input type="number" name="height_fhtml" placeholder="In Feet" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="salary_fhtml">salary</label>
-          <input type="number" name="salary_fhtml" placeholder="In Dollars ($)" class="" />
+          <input type="number" name="salary_fhtml" placeholder="In Dollars ($)" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="etime_fhtml">date</label>
-          <input type="date" name="etime_fhtml" placeholder="" class="" />
+          <input type="date" name="etime_fhtml" placeholder="" required class="" />
         </div>
 
         <div class="mb-4">
           <label for="etzone_fhtml">timeZone</label>
-          <input type="datetime-local" name="etzone_fhtml" placeholder="" class="" />
+          <input type="datetime-local" name="etzone_fhtml" placeholder=" required" class="" />
         </div>
 
         <div class="mb-4">
           <label for="fazno_fhtml">decimals</label>
-          <input type="number" name="fazno_fhtml" placeholder="5 max 0.xx" class="" />
+          <input type="number" name="fazno_fhtml" placeholder="5 max 0.xx" required min="-999.99" max="999.99" step=".99" class="" />
         </div>
 
         <div class="mb-4">
           <label for="ipadd_fhtml">IPAddress</label>
-          <input type="text" name="ipadd_fhtml" placeholder="::ffff:10.10.10.10" class="" />
+          <input type="text" name="ipadd_fhtml" placeholder="::ffff:10.10.10.10" required value="{{get_client_ip}}" class="" />
         </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="hover:bg-blue-500 hover:text-white hover:border-transparent">Save Info</button>

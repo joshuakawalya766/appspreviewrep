@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import  House
+from .models import House
+# from .models import  HouseForm
 
 # Create your views here.
 def index(request):
@@ -12,8 +13,7 @@ def index(request):
         }
     else:
         context = {
-            'houses': House.objects.all(),
-            'search_input': search_input
+            'houses': House.objects.all()
         }
         search_input=''
 
@@ -24,10 +24,15 @@ def index(request):
             location=request.POST['location_fhtml'],
             rooms=request.POST['rooms_fhtml'],
             baths=request.POST['baths_fhtml'],
-            # image= request.POST['image_fhtml']
+            image= request.FILES['image_fhtml']
         )
         new_house.save()
-        return redirect('personpage')
+        # -----------------using forms
+        # form = HouseForm(request.POST, request.FILES)
+        # if form.is_valid():
+        #     image = request.FILES['image_fhtml']
+        #     form.save()
+        return redirect('/')
     return render(request, 'house/index.html', context)
     
 
@@ -55,7 +60,7 @@ def editHouse(request,pk):
         context['house'].location = request.POST['location_fhtml']
         context['house'].rooms = request.POST['rooms_fhtml']
         context['house'].baths = request.POST['baths_fhtml']
-        # context['house'].image = request.POST['image_fhtml']
+        context['house'].image = request.FILES['image_fhtml']
         context['house'].save()
         return redirect('/profile/'+str(context['house'].id))
     

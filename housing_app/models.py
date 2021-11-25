@@ -1,5 +1,6 @@
 from django.db import models
 from PIL import Image
+# from django.forms import ModelForm
 # Create your models here.
 
 
@@ -30,4 +31,7 @@ class House(models.Model):
         verbose_name_plural = 'Houses'
 
 
-
+# class HouseForm(ModelForm):
+#     class Meta:
+#         model = House
+#         fields = ['title', 'location', 'rooms', 'baths', 'image']

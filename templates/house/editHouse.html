@@ -5,7 +5,7 @@
   <!-- Update Info by user -->
  <div class="h-1/5 w-4/12 min-w-max">
     <p class="mx-auto flex justify-center font-extralight mt-1">Update Info of this house using this form</p>
-    <form action="" method="post">
+    <form action="" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         <section class="">
             <div class="">
@@ -14,7 +14,7 @@
                 <input type="text" name="location_fhtml" placeholder="Enter Location" value="{{house.location}}">
                 <input type="text" name="rooms_fhtml" placeholder="No of Rooms" value="{{house.rooms}}">
                 <input type="text" name="baths_fhtml" placeholder="No of Bath rooms" value="{{house.baths}}">
-                <!-- <input type="file" name="image_fhtml" placeholder="Select Image" value="{{house.image.path.url}}"> -->
+                <input type="file" name="image_fhtml" placeholder="Select Image" value="{{house.image.path.url}}">
             </div>
             <div class="p-1 rounded-md flex justify-center">
                 <button type="submit">Update House</button>
