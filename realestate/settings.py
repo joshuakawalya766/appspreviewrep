@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-dmc)*_pji_8q56-g+-0_!br!hv$ahlli9hr0u($*^7+mrxr9og
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.150', '127.0.0.1','appspreview.pythonanywhere.com','transcription-disturbed-arctic-apr.trycloudflare.com']
+ALLOWED_HOSTS = ['192.168.43.150', '127.0.0.1',
+                 'appspreview.pythonanywhere.com', 'poll-joyce-chronic-receipt.trycloudflare.com']
 
 
 # Application definition
@@ -79,9 +80,17 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'realestate',
+        'USER': 'postuser',
+        'PASSWORD': 'postuser',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
