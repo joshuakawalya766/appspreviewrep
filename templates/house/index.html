@@ -1,5 +1,5 @@
 {% extends '../base.html' %} {% block title %} house browse {% endblock title %} {% block content %}
-<div class="">
+<div class="animate__animated animate__bounce">
   <form action="/" method="get">
     {% csrf_token %}
     <label for="search_fhtml">Search house:</label>
@@ -8,7 +8,7 @@
   </form>
 </div>
 {{67 | time:"H:i"}}
-<div class="h-auto w-4/5 overflow-x-hidden">
+<div class="h-auto w-4/5 overflow-x-hidden animate__animated animate__fadeIn">
   <section class="flex overflow-x-scroll">
     {% for object in houses reversed %}
     <a href="{% url 'profile' object.id %}">
@@ -53,7 +53,7 @@
   </section>
 </div>
 <!-- Get Info from user -->
-<div class=" h-1/5 w-4/12 min-w-max">
+<div class=" h-1/5 w-4/12 min-w-max animate__animated animate__bounceIn">
   <p class="mx-auto flex justify-center font-extralight mt-1">Add a house using this form</p>
   <form action="" method="post" enctype="multipart/form-data" class="">
     {% csrf_token %}

@@ -8,7 +8,7 @@
       <div class="overflow-y-scroll">
         {% for person in people %}
         <div class="max-w-sm w-full lg:max-w-full lg:flex">
-          <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{person.afile.url}}')" title=""></div>
+          <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden  animate__animated animate__fadeIn" style="background-image: url('{{person.afile.url}}')" title=""></div>
           <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
             <div class="mb-8">
               <p class="text-sm text-gray-600 flex items-center">
@@ -18,7 +18,7 @@
 
                 {% if person.fullname == membership.person %}{{membership.group}} {% endif %}
               </p>
-              <div class="text-gray-900 font-bold text-xl mb-2">{{person.fullname | title}}</div>
+              <div class="text-gray-900 font-bold text-xl mb-2 animate__animated animate__flipInX">{{person.fullname | title}}</div>
               <p class="text-gray-700 text-base flex flex-wrap">
                 <span class="text-pink-800">National Identification Number: {{person.nin}}</span><span class="text-purple-800"> Age: {{person.age}}</span> <span class="text-yellow-900">Email: {{person.email}}</span> <span class="text-pink-500">Boby Size: {{person.size| title}}</span>
                 <span class="text-purple-500">Height: {{person.height}}</span> <span class="text-red-500">Salary: {{person.salary}}</span> <span class="text-blue-500">Tax: ---</span> <span class="text-green-600">IpAddress: {{person.ipadd}}</span>
@@ -53,7 +53,7 @@
         <input type="search" name="search_fhtml" id="" placeholder="By First Name Only" value="{{search_input}}" />
       </form>
       <!-- POST -->
-      <form action="" method="post" enctype="multipart/form-data" class="overflow-y-scroll">
+      <form action="" method="post" enctype="multipart/form-data" class="overflow-y-scroll animate__animated animate__bounceIn">
         {% csrf_token %}
         <div class="mb-4">
           <label for="nin_fhtml" class="">nin</label>
