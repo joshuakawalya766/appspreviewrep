@@ -11,12 +11,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-    rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="{% static 'css/tailwind-output.css' %}" />
     <title>{% block title %} {% endblock title %}</title>
   </head>
-  <body class="dark">
+  <body>
     <div class="h-auto w-4/5 overflow-x-hidden m-auto animate__animated animate__rubberBand">
       <div class="flex overflow-x-scroll" style="background-color: #0b2bdd00">
         <a href="{% url 'personpage' %}" class="" id="navitem">People&nbsp;Base</a>
@@ -31,6 +30,58 @@
         <a href="{% url 'index' %}" class="" id="navitem">Housing&nbsp;Base</a>
       </div>
     </div>
+    <!-- <div class="flex">
+        <label for="darkmode">DarkMode?</label><input class="darkmode" name="darkmode" type="radio">
+        <script>
+          $('html').toggleClass('dark', $('.darkmode').click )
+        </script>
+      </div> -->
+    <!-- ---- -->
+    <!-- <button class="border w-min" onclick="myFunction()">mode</button>
+
+      <script>
+        function myFunction() {
+          var element = document.body;
+          element.classList.toggle("dark");
+        }
+      </script> -->
+    <!-- ---- -->
+    <!-- dark mode -->
+    <div class="flex items-center justify-center mx-auto mt-1">
+      <div class="flex justify-end items-center space-x-2 mx-auto relative">
+        <span class="text-xs font-extralight">Light </span>
+        <div>
+          <input type="checkbox" name="" id="checkbox" class="hidden" />
+          <label for="checkbox" class="cursor-pointer">
+            <div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p2">
+              <div class="w-4 h-4 bg-white rounded-full shadow switch-ball"></div>
+            </div>
+          </label>
+        </div>
+        <span class="text-xs font-semibold">Dark</span>
+      </div>
+    </div>
+    <style>
+      #checkbox:checked + label .switch-ball {
+        background-color: white;
+        transform: translateX(24px);
+        transition: transform 0.3s linear;
+      }
+    </style>
+    <script>
+      const checkbox = document.querySelector("#checkbox");
+      const html = document.querySelector("html");
+
+      const toggleDarkMode = function () {
+        checkbox.checked ? html.classList.add("dark") : html.classList.remove("dark");
+      };
+
+      //calling the function directly
+
+      toggleDarkMode();
+      checkbox.addEventListener("click", toggleDarkMode);
+    </script>
+    <!-- dark mode -->
     {% block content %} {% endblock content %}
     <style>
       input {
@@ -215,9 +266,9 @@
         background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
         border-color: transparent;
       }
-      svg:hover{
+      svg:hover {
         animation: ping;
-        animation-duration:1s;
+        animation-duration: 1s;
         animation-iteration-count: infinite;
       }
     </style>

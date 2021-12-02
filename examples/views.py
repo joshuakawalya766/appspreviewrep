@@ -13,8 +13,10 @@ def person(request):
     """Search functionality"""
     search_input = request.GET.get('search_fhtml')
     if search_input:
+        person = Person.objects.filter(fname__icontains=search_input) or Person.objects.filter(
+            lname__icontains=search_input)
         context = {
-            'people': Person.objects.filter(fname__icontains=search_input),
+            'people': person,
             'membership': Membership.objects.all(),
             'size_choices': Person.ShirtSize,
             'search_input': search_input,

@@ -5,36 +5,39 @@
 
     <div class="flex flex-col overflow-hidden">
       <p class="font-light">User Directory Contatins {{people.count}} {{people.count | pluralize:"Person,People"}}</p>
+
       <div class="overflow-y-scroll">
         {% for person in people %}
         <div class="max-w-sm w-full lg:max-w-full lg:flex">
-          <div class="h-48 lg:h-auto lg:w-48 lg:hover:w-3/5 hover:duration-500 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden animate__animated animate__fadeIn animate__delay-0.5s" style="background-image: url('{{person.afile.url}}')" title=""></div>
-          <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+          <div class="relative group h-48 lg:h-auto lg:w-48 lg:hover:w-3/5 hover:duration-500 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden animate__animated animate__fadeIn animate__delay-0.5s" style="background-image: url('{{person.afile.url}}')" title="">
+            <h1 class="absolute bottom-0 right-0 left-0 h-1/3 animate__animated animate__fadeInUp animate__delay-0.5s hidden group-hover:flex group-hover:flex-col justify-center font-semibold text-white dark:text-white dark:bg-opacity-20 dark:bg-gray-100">{{person.fullname | title}}</h1>
+          </div>
+          <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal dark:bg-gray-500">
             <div class="mb-8">
               <p class="text-sm text-gray-600 flex items-center mb-1">
-                <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <svg class="fill-current text-gray-500 dark:text-white w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
                 </svg>
 
                 {% if person.fullname == membership.person %}{{membership.group}} {% endif %}
               </p>
-              <div class="text-gray-900 font-bold text-xl mb-2 bb animate__animated animate__bounce">{{person.fullname | title}}</div>
+              <div class="text-gray-900 font-bold text-xl mb-2 animate__animated animate__bounce">{{person.fullname | title}}</div>
               <p class="text-gray-700 text-base flex flex-wrap">
-                <span class="text-pink-800">National Identification Number: {{person.nin}}</span>
-                <span class="text-purple-800"> Age: {{person.age}}</span>
-                <span class="text-yellow-900">Email: {{person.email}}</span>
-                <span class="text-pink-500">Boby Size: {{person.size| title}}</span>
-                <span class="text-purple-500">Height: {{person.height}}</span>
-                <span class="text-red-500">Salary: {{person.salary}}</span>
-                <span class="text-blue-500">Tax: ---</span>
-                <span class="text-green-600">IpAddress: {{person.ipadd}}</span>
+                <span class="dark:text-white text-pink-800">National Identification Number: {{person.nin}}</span>
+                <span class="dark:text-white text-purple-800"> Age: {{person.age}}</span>
+                <span class="dark:text-white text-yellow-900">Email: {{person.email}}</span>
+                <span class="dark:text-white text-pink-500">Boby Size: {{person.size| title}}</span>
+                <span class="dark:text-white text-purple-500">Height: {{person.height}}</span>
+                <span class="dark:text-white text-red-500">Salary: {{person.salary}}</span>
+                <span class="dark:text-white text-blue-500">Tax: ---</span>
+                <span class="dark:text-white text-green-600">IpAddress: {{person.ipadd}}</span>
               </p>
             </div>
             <div class="flex items-center group">
-              <img class="w-10 h-10 rounded-full mr-4" src="{{person.profile.url}}" alt="Avatar of {{person.fullname}}" style="object-fit: cover;" />
+              <img class="w-10 h-10 rounded-full mr-4 group-hover:rounded-md" src="{{person.profile.url}}" alt="Avatar of {{person.fullname}}" style="object-fit: cover" />
               <div class="text-sm group-hover:capitalize">
-                <p class="text-gray-900 leading-none hover:text-blue-500">{{person.fullname}}</p>
-                <p class="text-gray-600">{{person.etzone}}</p>
+                <p class="text-gray-900 leading-none hover:text-blue-500 dark:hover:text-yellow-500">{{person.fullname}}</p>
+                <p class="dark:text-gray-100 text-gray-600">{{person.etzone}}</p>
               </div>
             </div>
           </div>
@@ -51,12 +54,12 @@
       </div>
     </div>
     <!-- row 2 -->
-    <div class="flex flex-col overflow-hidden">
+    <div class="flex flex-col overflow-hidden dark:bg-gray-200">
       <!-- GET -->
       <form action="" method="get" class="">
-          {% csrf_token %}
+        {% csrf_token %}
         <label for="search_fhtml">Search User:</label>
-        <input type="search" name="search_fhtml" id="" placeholder="By First Name Only" value="{{search_input}}" />
+        <input type="search" name="search_fhtml" id="" placeholder="Search letters" value="{{search_input}}" />
       </form>
       <!-- POST -->
       <form action="" method="post" enctype="multipart/form-data" class="overflow-y-scroll animate__animated animate__bounceIn">
@@ -101,7 +104,7 @@
           <!-- <input type="text" name="size_fhtml" placeholder="Small Medium Large" required class="" /> -->
           <select name="size_fhtml" id="">
             {% for choice in size_choices %}
-              <option value="{{choice | title}}">{{choice | title}}</option>
+            <option value="{{choice | title}}">{{choice | title}}</option>
             {% endfor %}
           </select>
         </div>

@@ -8,6 +8,7 @@
   </form>
 </div>
 {{67 | time:"H:i"}}
+<p class="font-light">Houses Directory Contatins {{houses.count}} {{houses.count | pluralize:"House,Houses"}}</p>
 <div class="h-auto w-4/5 overflow-x-hidden animate__animated animate__fadeIn">
   <section class="flex overflow-x-scroll">
     {% for object in houses reversed %}
